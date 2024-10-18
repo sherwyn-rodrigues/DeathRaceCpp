@@ -116,13 +116,30 @@ void ADeathRaceCPPPawn::Steering(const FInputActionValue& Value)
 	ChaosVehicleMovement->SetSteeringInput(SteeringValue);
 }
 
+/*
+void ADeathRaceCPPPawn::AISteering(float AccelerationAmount)
+{
+	// Accelerate amount 
+	ChaosVehicleMovement->SetSteeringInput(AccelerationAmount);
+}
+*/
+
 void ADeathRaceCPPPawn::Throttle(const FInputActionValue& Value)
 {
 	// get the input magnitude for the throttle
 	float ThrottleValue = Value.Get<float>();
+	UE_LOG(LogTemp, Warning, TEXT("Accelerate Value is %f"), ThrottleValue);
+
+
 
 	// add the input
 	ChaosVehicleMovement->SetThrottleInput(ThrottleValue);
+}
+
+void ADeathRaceCPPPawn::AIThrottle(float AccelerationAmount)
+{
+	//UE_LOG(LogTemp, Warning, TEXT("Accelerate Value is %f"), AccelerationAmount);
+	ChaosVehicleMovement->SetThrottleInput(AccelerationAmount);
 }
 
 void ADeathRaceCPPPawn::Brake(const FInputActionValue& Value)
@@ -203,5 +220,9 @@ void ADeathRaceCPPPawn::ResetVehicle(const FInputActionValue& Value)
 
 	UE_LOG(LogTemplateVehicle, Error, TEXT("Reset Vehicle"));
 }
+
+
+// Accelerate function for AI  Car
+
 
 #undef LOCTEXT_NAMESPACE

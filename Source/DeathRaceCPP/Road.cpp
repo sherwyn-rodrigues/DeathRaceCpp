@@ -11,7 +11,6 @@ ARoad::ARoad()
 	PrimaryActorTick.bCanEverTick = true;
 
 	RoadSpline = CreateDefaultSubobject<USplineComponent>(TEXT("RoadSpline"));
-	RootComponent = RoadSpline; //Not Sure Check this out if its supposed to be root
 
 }
 

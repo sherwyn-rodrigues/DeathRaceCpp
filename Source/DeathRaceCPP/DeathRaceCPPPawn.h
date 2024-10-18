@@ -98,8 +98,12 @@ protected:
 	/** Handles steering input */
 	void Steering(const FInputActionValue& Value);
 
+	//void AISteering(float AccelerationAmount);
+
 	/** Handles throttle input */
 	void Throttle(const FInputActionValue& Value);
+
+	void AIThrottle(float AccelerationAmount);
 
 	/** Handles brake input */
 	void Brake(const FInputActionValue& Value);
