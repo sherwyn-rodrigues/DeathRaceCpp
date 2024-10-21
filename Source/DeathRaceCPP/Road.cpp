@@ -14,17 +14,3 @@ ARoad::ARoad()
 
 }
 
-// Called when the game starts or when spawned
-void ARoad::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ARoad::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

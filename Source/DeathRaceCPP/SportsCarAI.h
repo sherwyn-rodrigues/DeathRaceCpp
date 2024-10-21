@@ -36,15 +36,26 @@ public:
 	UPROPERTY(EditAnywhere)
 	USceneComponent* RightPoint;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Steer Control")
 	ARoad* Road = nullptr;
 
 	UPROPERTY(BlueprintReadOnly)
 	USplineComponent* SplineReference;
+
+	/** For max speed of AI cars */
+	UPROPERTY(EditAnywhere)
+	float MaxAISpped = 50;
 
 	UFUNCTION()
 	void SpeedControl();
 
 	UFUNCTION()
 	void SteerControl();
+
+	/** The distance along the spline from the start */
+	UPROPERTY(EditAnywhere, Category = "Steer Control")
+	float DistanceAlongSpline = 0;
+
+	UPROPERTY(BlueprintReadOnly)
+	FVector TargetPoint;
 };
