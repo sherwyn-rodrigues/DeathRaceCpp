@@ -30,9 +30,11 @@ public:
 
 	ASportsCarAI();
 
+	//location needs to be placed on the left side of car
 	UPROPERTY(EditAnywhere)
 	USceneComponent* LeftPoint;
 
+	//location needs to be placed on the Right side of car
 	UPROPERTY(EditAnywhere)
 	USceneComponent* RightPoint;
 
@@ -44,7 +46,7 @@ public:
 
 	/** For max speed of AI cars */
 	UPROPERTY(EditAnywhere)
-	float MaxAISpped = 50;
+	float MaxAISpped = 60;
 
 	UFUNCTION()
 	void SpeedControl();
@@ -52,10 +54,12 @@ public:
 	UFUNCTION()
 	void SteerControl();
 
-	/** The distance along the spline from the start */
-	UPROPERTY(EditAnywhere, Category = "Steer Control")
+	// The distance along the spline from the start 
 	float DistanceAlongSpline = 0;
 
-	UPROPERTY(BlueprintReadOnly)
+	//TargetPoint on the spline where the car is supposed to move or look towards
 	FVector TargetPoint;
+
+	//To check the distance between car and Targetpoint
+	float CheckGap = 1000;
 };

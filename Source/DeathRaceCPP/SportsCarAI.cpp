@@ -8,9 +8,11 @@
 
 ASportsCarAI::ASportsCarAI()
 {
+	// Left and right points on car for checking steering direction
 	LeftPoint = CreateDefaultSubobject<USceneComponent>(TEXT("LeftPoint"));
+	LeftPoint->SetupAttachment(RootComponent);
 	RightPoint = CreateDefaultSubobject<USceneComponent>(TEXT("RightPoint"));
-
+	RightPoint->SetupAttachment(RootComponent);
 }
 
 
@@ -22,18 +24,16 @@ void ASportsCarAI::BeginPlay()
 	if (IsValid(Road))
 	{
 		SplineReference = Road->RoadSpline;
-		UE_LOG(LogTemp, Warning, TEXT("Is Valid"));
 	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Is InValid"));
-	}
+
 
 	FTimerHandle MyTimerHandleSpeedControl;
 	FTimerHandle MyTimerHandleSteerControl;
 	
+	//framerate independent function calls for performance reasons
 	GetWorldTimerManager().SetTimer(MyTimerHandleSpeedControl, this, &ASportsCarAI::SpeedControl, 0.1f, true);
-	GetWorldTimerManager().SetTimer(MyTimerHandleSteerControl, this, &ASportsCarAI::SteerControl, 0.1f, true);
+	GetWorldTimerManager().SetTimer(MyTimerHandleSteerControl, this, &ASportsCarAI::SteerControl, 0.05f, true);
+
 	/*GetWorldTimerManager().SetTimer(MyTimerHandle, [this]()
 		{
 			SpeedControl(1);
@@ -46,7 +46,6 @@ void ASportsCarAI::BeginPlay()
 void ASportsCarAI::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//SpeedControl();
 }
 
 
@@ -62,10 +61,27 @@ void ASportsCarAI::SteerControl()
 	if (SplineReference)
 	{
 		TargetPoint = SplineReference->GetLocationAtDistanceAlongSpline(DistanceAlongSpline, ESplineCoordinateSpace::World);
-
 	}
-	FVector EndTargetPoint = TargetPoint;
-	EndTargetPoint.Z += 300.0f;
 
-	DrawDebugLine(GetWorld(), TargetPoint, EndTargetPoint, FColor::Red, true, 10.f, 0, 10.0f);
+	FVector EndTargetPoint = TargetPoint;
+	EndTargetPoint.Z += 300.0f;//for draw debug line
+	DrawDebugLine(GetWorld(), TargetPoint, EndTargetPoint, FColor::Red, false, 3.f, 0, 10.0f);
+
+
+	//increase the target spline distance as you go closer to change targetpoint as you move along the map
+	if (FVector::Dist(TargetPoint, GetActorLocation()) < CheckGap)
+	{
+		DistanceAlongSpline += 300;
+	}
+
+
+	if (FVector::Dist(TargetPoint, RightPoint->GetComponentLocation()) < FVector::Dist(TargetPoint, LeftPoint->GetComponentLocation()))
+	{
+		AISteering(0.7f);
+	}
+	else
+	{
+		AISteering(-0.7f);
+	}
+
 }
