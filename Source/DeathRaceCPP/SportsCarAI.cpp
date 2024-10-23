@@ -34,6 +34,7 @@ void ASportsCarAI::BeginPlay()
 	GetWorldTimerManager().SetTimer(MyTimerHandleSpeedControl, this, &ASportsCarAI::SpeedControl, 0.1f, true);
 	GetWorldTimerManager().SetTimer(MyTimerHandleSteerControl, this, &ASportsCarAI::SteerControl, 0.05f, true);
 
+	//Call Speed Control using an input paremeter
 	/*GetWorldTimerManager().SetTimer(MyTimerHandle, [this]()
 		{
 			SpeedControl(1);
@@ -58,30 +59,53 @@ void ASportsCarAI::SpeedControl()
 
 void ASportsCarAI::SteerControl()
 {
+
 	if (SplineReference)
 	{
 		TargetPoint = SplineReference->GetLocationAtDistanceAlongSpline(DistanceAlongSpline, ESplineCoordinateSpace::World);
 	}
-
-	FVector EndTargetPoint = TargetPoint;
-	EndTargetPoint.Z += 300.0f;//for draw debug line
-	DrawDebugLine(GetWorld(), TargetPoint, EndTargetPoint, FColor::Red, false, 3.f, 0, 10.0f);
-
-
+	
 	//increase the target spline distance as you go closer to change targetpoint as you move along the map
 	if (FVector::Dist(TargetPoint, GetActorLocation()) < CheckGap)
 	{
-		DistanceAlongSpline += 300;
+		DistanceAlongSpline = DistanceAlongSpline + 300 > SplineReference->GetSplineLength() ?  0: DistanceAlongSpline+300;
 	}
 
+	FVector EndTargetPoint = TargetPoint;
+	EndTargetPoint.Z += 300.0f;//for draw debug line
+	DrawDebugLine(GetWorld(), TargetPoint, EndTargetPoint, FColor::Red, false, 1.f, 0, 10.0f);
 
+
+
+	// steer difference is used to check to avoid consistent movement from left to right
+	//if the difference is less then the value set it wont steer until it crosses the difference value
+	float SteerDifference = 20;
+
+
+	//check is left point or right point is closer to the target point
 	if (FVector::Dist(TargetPoint, RightPoint->GetComponentLocation()) < FVector::Dist(TargetPoint, LeftPoint->GetComponentLocation()))
 	{
-		AISteering(0.7f);
+		//if difference is less then SteerDifference dont steer
+		if (FMath::Abs(FVector::Dist(TargetPoint, RightPoint->GetComponentLocation()) - FVector::Dist(TargetPoint, LeftPoint->GetComponentLocation())) < SteerDifference)
+		{
+			AISteering(SteerAmount * 0);
+		}
+		else
+		{
+			AISteering(SteerAmount * 1);
+		}
 	}
 	else
 	{
-		AISteering(-0.7f);
+		//if difference is less then SteerDifference dont steer
+		if (FMath::Abs(FVector::Dist(TargetPoint, RightPoint->GetComponentLocation()) - FVector::Dist(TargetPoint, LeftPoint->GetComponentLocation())) < SteerDifference)
+		{
+			AISteering(SteerAmount * 0);
+		}
+		else
+		{
+			AISteering(SteerAmount * -1);
+		}
 	}
 
 }

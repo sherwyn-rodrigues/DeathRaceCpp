@@ -62,4 +62,7 @@ public:
 
 	//To check the distance between car and Targetpoint
 	float CheckGap = 1000;
+
+	UPROPERTY(EditAnywhere)
+	float SteerAmount = 0.7;
 };
