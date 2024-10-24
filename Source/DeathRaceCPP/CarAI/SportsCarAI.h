@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DeathRaceCPPSportsCar.h"
+#include "DeathRaceCPP/DeathRaceCPPSportsCar.h"
 #include "SportsCarAI.generated.h"
 
 class ARoad;
