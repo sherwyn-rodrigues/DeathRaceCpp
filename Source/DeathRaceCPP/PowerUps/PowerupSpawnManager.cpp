@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "DeathRaceCPP/PowerUps/PowerupSpawnPoints.h"
+#include "DeathRaceCPP/PowerUps/PowerupSpawnManager.h"
 
 // Sets default values
-APowerupSpawnPoints::APowerupSpawnPoints()
+APowerupSpawnManager::APowerupSpawnManager()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -12,14 +12,14 @@ APowerupSpawnPoints::APowerupSpawnPoints()
 }
 
 // Called when the game starts or when spawned
-void APowerupSpawnPoints::BeginPlay()
+void APowerupSpawnManager::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void APowerupSpawnPoints::Tick(float DeltaTime)
+void APowerupSpawnManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 

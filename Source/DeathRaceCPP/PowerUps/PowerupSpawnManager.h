@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "PowerupSpawnPoints.generated.h"
+#include "PowerupSpawnManager.generated.h"
 
 UCLASS()
-class DEATHRACECPP_API APowerupSpawnPoints : public AActor
+class DEATHRACECPP_API APowerupSpawnManager : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	APowerupSpawnPoints();
+	APowerupSpawnManager();
 
 protected:
 	// Called when the game starts or when spawned
@@ -28,4 +28,5 @@ public:
 
 	//UPROPERTY(EditAnywhere, Category = "Spawning")
 	//TArray<UBasePowerups> Powerups;
+
 };

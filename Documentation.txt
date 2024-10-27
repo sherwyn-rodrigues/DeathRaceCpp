@@ -6,7 +6,7 @@
 		Collision Sphere
 	Functions:
 		OnPick()
-		Onpick function defines what to do with te powerup once its picked up from the map
+		Onpick function defines what to do with the powerup once its picked up from the map
 		OnDrop()
 		If Dropped Spawn it back in the map
 		OnUse()
@@ -26,3 +26,6 @@
 
 		DartProjectileSpawn
 		Components:
+
+
+NOTE: Add Front Spawn Point and Rear Spawn Point for the BaseCar CPP
