@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "DeathRaceCPP/PowerUps/BasePowerUp.h"
+#include "DeathRaceCPP/PowerUps/BasePowerup/BasePowerUp.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SphereComponent.h"
 
@@ -42,7 +42,7 @@ void ABasePowerUp::OnDrop()
 {
 }
 
-void ABasePowerUp::OnUSe()
+void ABasePowerUp::OnUse()
 {
 }
 

@@ -66,4 +66,14 @@ ADeathRaceCPPSportsCar::ADeathRaceCPPSportsCar()
 	// NOTE: Check the Blueprint asset for the Steering Curve
 	GetChaosVehicleMovement()->SteeringSetup.SteeringType = ESteeringType::Ackermann;
 	GetChaosVehicleMovement()->SteeringSetup.AngleRatio = 0.7f;
+
+	//Set up front and back spawn points
+	FrontSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("FrontSpawnPoint"));
+	FrontSpawnPoint->SetupAttachment(RootComponent);
+	FrontSpawnPoint->SetRelativeLocation(FVector(400.f, 0.f, 60.f));
+	BackSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("BackSpawnPoint"));
+	BackSpawnPoint->SetupAttachment(RootComponent);
+	BackSpawnPoint->SetRelativeLocation(FVector(-400.f, 0.f, 60.f));
+	MidSpawnPoint = CreateDefaultSubobject<USceneComponent>("Mid SpawnPoint");
+	MidSpawnPoint->SetupAttachment(RootComponent);
 }

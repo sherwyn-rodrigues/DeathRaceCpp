@@ -28,7 +28,7 @@ protected:
 	void OnDrop();
 
 	UFUNCTION(BlueprintCallable)
-	void OnUSe();
+	void OnUse();
 
 public:	
 	// Called every frame

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "DeathRaceCPP/PowerUps/PowerupSpawnManager.h"
+#include "DeathRaceCPP/PowerUps/PowerupSpawnManager/PowerupSpawnManager.h"
 
 // Sets default values
 APowerupSpawnManager::APowerupSpawnManager()
