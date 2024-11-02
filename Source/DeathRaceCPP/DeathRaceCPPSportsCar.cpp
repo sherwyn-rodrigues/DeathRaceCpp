@@ -71,9 +71,12 @@ ADeathRaceCPPSportsCar::ADeathRaceCPPSportsCar()
 	FrontSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("FrontSpawnPoint"));
 	FrontSpawnPoint->SetupAttachment(RootComponent);
 	FrontSpawnPoint->SetRelativeLocation(FVector(400.f, 0.f, 60.f));
+
 	BackSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("BackSpawnPoint"));
 	BackSpawnPoint->SetupAttachment(RootComponent);
 	BackSpawnPoint->SetRelativeLocation(FVector(-400.f, 0.f, 60.f));
-	MidSpawnPoint = CreateDefaultSubobject<USceneComponent>("Mid SpawnPoint");
+
+	MidSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Mid SpawnPoint"));
 	MidSpawnPoint->SetupAttachment(RootComponent);
+	MidSpawnPoint->SetRelativeLocation(FVector(0.f, 0.f, 60.f));
 }
