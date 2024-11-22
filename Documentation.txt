@@ -1,0 +1,31 @@
+1.BasePoewrupClass
+	Base class with a static mesh and a sphere collision to spawn and detect collision on the map
+
+	Components:
+		static mesh
+		Collision Sphere
+	Functions:
+		OnPick()
+		Onpick function defines what to do with the powerup once its picked up from the map
+		OnDrop()
+		If Dropped Spawn it back in the map
+		OnUse()
+		Define in child class
+
+
+
+
+
+
+		1.A.MineClass
+
+		1.B.DartClass
+
+		1.A.C.FollowProjectile
+
+
+		DartProjectileSpawn
+		Components:
+
+
+NOTE: Add Front Spawn Point and Rear Spawn Point for the BaseCar CPP

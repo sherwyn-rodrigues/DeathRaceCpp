@@ -98,8 +98,14 @@ protected:
 	/** Handles steering input */
 	void Steering(const FInputActionValue& Value);
 
+	/** Handles Steering Input For AI Cars */
+	void AISteering(float SteerAmount);
+
 	/** Handles throttle input */
 	void Throttle(const FInputActionValue& Value);
+
+	/** Handles Acceleration inpit for AI Cars */
+	void AIThrottle(float AccelerationAmount);
 
 	/** Handles brake input */
 	void Brake(const FInputActionValue& Value);
